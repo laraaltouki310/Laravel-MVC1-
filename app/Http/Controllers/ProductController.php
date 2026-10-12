@@ -7,16 +7,14 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    // public function index(){
+    public function index(){
 
-    //     $products = Product ::all();
-    //     return response() -> json ([
-    //         'products' => $products
-
-    //     ]);
-
-    //     dd($products);
-    // }
+        $products = Product ::all();
+        return response() -> json ([
+            'products' => $products
+        ]);
+        dd($products);
+    }
 
     public function store(Request $request)
     {
@@ -32,7 +30,9 @@ class ProductController extends Controller
 
     public function update($id, Request $request)
     {
-        $product = Product::
-        Product::update(name->$request->all());  // بدنا نضمن ال id هون
+    $product = Product::findOrFail($id);
+    $product->update($request->all());
+
+    return redirect()->back()->with('success', 'تم');
     }
 }
